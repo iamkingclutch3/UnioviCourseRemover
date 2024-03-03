@@ -1,18 +1,16 @@
-# Disable Elements by Checkbox UserScript
+# Disable Uniovi Courses from Virtual Campus
 
-This UserScript allows you to hide and persistently save the visibility state of courses in a web page based on their checkboxes.
+This Tampermonkey/UserScript allows you to hide courses in the main Virtual Campus page.
 
 ## Features
 
 - Adds a checkbox to each course element.
-- Checkbox state persists even after page refresh.
-- Move marked courses to the bottom of the list.
 - Reset button to restore visibility for all courses.
 
 ## How to Use
 
 1. Install a UserScript manager such as Tampermonkey for your browser.
-2. Create a new script and copy-paste the code from `disable_elements_by_checkbox.user.js`.
+2. Create a new script and copy-paste the code from `uniovihider.js`.
 3. Save the script and refresh the target page.
 
 ## Usage
@@ -23,13 +21,10 @@ This UserScript allows you to hide and persistently save the visibility state of
 
 ## Customization
 
-You can customize the appearance and behavior of the checkboxes by modifying the script code.
+You can customize the appearance and behavior of the checkboxes by modifying the script code. 
+Help me improving the visuals by doing a pull request!
 
 ## Requirements
 
 - Tampermonkey or similar UserScript manager for your browser.
-
-## Disclaimer
-
-Use this script responsibly and ensure that it complies with the terms of service of the target website.
 
