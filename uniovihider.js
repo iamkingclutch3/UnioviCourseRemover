@@ -4,8 +4,10 @@
 // @version      0.1
 // @description  Disable elements in a course list based on data-courseid
 // @author       kingclutch23
-// @match        https://www.campusvirtual.uniovi.es/
-// @grant        none
+// @match        https://www.campusvirtual.uniovi.es/*
+// @grant        GM_getValue
+// @grant        GM_setValue
+
 // ==/UserScript==
 
 
@@ -25,15 +27,24 @@
 
     function main() {
         // Add checkboxes and move marked courses to the bottom
-        $('.courses.frontpage-course-list-enrolled .coursebox').each(function() {
-            var courseId = $(this).data('courseid');
-            
-            // Create a div with checkbox for each course element
-            var checkboxDiv = $('<div style="display: flex; justify-content: flex-end; align-items: center;"></div>');
-            var checkbox = $('<input type="checkbox" class="disable-checkbox" data-courseid="' + courseId + '" style="margin-left: auto;">');
-            
-            // Append the checkbox div to the end of the course element and move marked courses to the bottom
-            if ($(this).find('.disable-checkbox').length === 0) {
+    $('.courses.frontpage-course-list-enrolled .coursebox').each(function() {
+        var courseId = $(this).data('courseid');
+
+        // Create a div with checkbox for each course element
+        var checkboxDiv = $('<div style="display: flex; justify-content: flex-end; align-items: center;"></div>');
+        var checkbox = $('<input type="checkbox" class="disable-checkbox" data-courseid="' + courseId + '" style="margin-left: auto;">');
+
+        // Load saved state
+        var savedState = GM_getValue(courseId, false);
+        checkbox.prop('checked', savedState);
+
+        // Save state when checkbox is clicked
+        checkbox.on('change', function() {
+            GM_setValue(courseId, $(this).prop('checked'));
+        });
+
+        // Append the checkbox div to the end of the course element and move marked courses to the bottom
+        if ($(this).find('.disable-checkbox').length === 0) {
                 $(this).css('position', 'relative').append(checkboxDiv.append(checkbox));
             }
 
